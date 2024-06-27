@@ -1,9 +1,12 @@
 package davideabbadessa.U2_W2_D4_Valid_Es.controllers;
 
 import davideabbadessa.U2_W2_D4_Valid_Es.entities.Autore;
+import davideabbadessa.U2_W2_D4_Valid_Es.exceptions.BadRequestException;
 import davideabbadessa.U2_W2_D4_Valid_Es.service.AutoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,8 +34,12 @@ public class AutoreController {
     }
 
     @PostMapping
-    public Autore createAuthor(@RequestBody Autore autore) {
+    public Autore createAuthor(@RequestBody @Validated Autore autore ,BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            throw new BadRequestException(bindingResult.getAllErrors());
+        }
         return autoreService.saveAutore(autore);
+
     }
 
     @PutMapping("/{id}")

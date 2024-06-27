@@ -8,6 +8,7 @@ import davideabbadessa.U2_W2_D4_Valid_Es.service.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -36,7 +37,7 @@ public class BlogPostController {
     }
 
     @PostMapping
-    public BlogPost createBlogPost(@RequestBody BlogPostPayloadRequest blogPostPayloadRequest) {
+    public BlogPost createBlogPost(@Validated @RequestBody BlogPostPayloadRequest blogPostPayloadRequest) {
         return blogPostService.save2(blogPostPayloadRequest);
     }
 
