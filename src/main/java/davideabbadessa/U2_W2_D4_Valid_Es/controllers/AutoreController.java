@@ -32,8 +32,7 @@ public class AutoreController {
 
     @PostMapping
     public Autore createAuthor(@RequestBody Autore autore) {
-        autore.setAvatar("https://lui-avatars.com/api?name=" + autore.getNome() + "+" + autore.getCognome());
-        return autoreService.save(autore);
+        return autoreService.saveAutore(autore);
     }
 
     @PutMapping("/{id}")

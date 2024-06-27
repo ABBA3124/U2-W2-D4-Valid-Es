@@ -27,6 +27,11 @@ public class AutoreService {
         return autoreRepository.save(autore);
     }
 
+    public Autore saveAutore(Autore autore) {
+        autore.setAvatar("https://lui-avatars.com/api?name=" + autore.getNome() + "+" + autore.getCognome());
+        return autoreRepository.save(autore);
+    }
+
     public void deleteById(UUID id) {
         autoreRepository.deleteById(id);
     }
